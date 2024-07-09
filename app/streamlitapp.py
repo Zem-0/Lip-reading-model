@@ -7,6 +7,11 @@ import tensorflow as tf
 from utils import load_data, num_to_char
 from modelutil import load_model
 
+
+char_to_num = tf.keras.layers.StringLookup(vocabulary=vocab, oov_token="")
+num_to_char = tf.keras.layers.StringLookup(
+    vocabulary=char_to_num.get_vocabulary(), oov_token="", invert=True
+)
 # Set the layout to the streamlit app as wide 
 st.set_page_config(layout='wide')
 
